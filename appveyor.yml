@@ -4,5 +4,11 @@ init:
 build_script:
 - msbuild "SqlPad.sln" /verbosity:minimal /p:DefineConstants="ORACLE_MANAGED_DATA_ACCESS_CLIENT" /p:Configuration=Release /p:Platform="x86" /verbosity:normal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
+before_test:
+- ps: $zipPath = "$($env:TEMP)\Appveyor.NUnit3Logger.zip"
+- ps: (New-Object Net.WebClient).DownloadFile('http://www.appveyor.com/downloads/Appveyor.NUnit3Logger.zip', $zipPath)
+- ps: 7z x $zipPath -y -o"$nunitPath\bin\addins" | Out-Null
+- ps: Move-Item "$nunitPath\bin\addins\appveyor.addins" "$nunitPath\bin\appveyor.addins"
+
 artifacts:
 - path: TestResult.xml
