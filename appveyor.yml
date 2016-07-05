@@ -9,7 +9,7 @@ before_test:
 - ps: $zipPath = "$($env:TEMP)\Appveyor.NUnit3Logger.zip"
 - ps: (New-Object Net.WebClient).DownloadFile('http://www.appveyor.com/downloads/Appveyor.NUnit3Logger.zip', $zipPath)
 - ps: 7z x $zipPath -y -o"$nunitPath\bin\addins" | Out-Null
-- ps: Move-Item "$nunitPath\bin\addins\appveyor.addins" "$nunitPath\bin\appveyor.addins"
+- ps: Move-Item "$nunitPath\bin\addins\appveyor.addins" "$nunitPath\bin\appveyor.addins" -Force
 
 artifacts:
 - path: TestResult.xml
