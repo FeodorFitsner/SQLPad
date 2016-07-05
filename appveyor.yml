@@ -1,3 +1,6 @@
+init:
+- git config --global core.autocrlf true
+
 build_script:
 - msbuild "SqlPad.sln" /verbosity:minimal /p:DefineConstants="ORACLE_MANAGED_DATA_ACCESS_CLIENT" /p:Configuration=Release /p:Platform="x86" /verbosity:normal /logger:"C:\Program Files\AppVeyor\BuildAgent\Appveyor.MSBuildLogger.dll"
 
