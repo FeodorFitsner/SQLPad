@@ -6,12 +6,5 @@ init:
 build_script:
 - msbuild "SqlPad.sln" /verbosity:minimal /p:DefineConstants="ORACLE_MANAGED_DATA_ACCESS_CLIENT" /p:Configuration=Release /p:Platform="x86" /verbosity:normal
 
-before_test:
-- ps: $nunitPath = "$env:SYSTEMDRIVE\Tools\NUnit3"
-- ps: $zipPath = "$($env:TEMP)\Appveyor.NUnit3Logger.zip"
-- ps: (New-Object Net.WebClient).DownloadFile('http://www.appveyor.com/downloads/Appveyor.NUnit3Logger.zip', $zipPath)
-- ps: 7z x $zipPath -y -o"$nunitPath\bin\addins" | Out-Null
-- ps: Move-Item "$nunitPath\bin\addins\appveyor.addins" "$nunitPath\bin\appveyor.addins" -Force
-
 artifacts:
 - path: TestResult.xml
